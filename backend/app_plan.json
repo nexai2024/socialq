@@ -1,0 +1,137 @@
+{
+  "app_type": "saas_dashboard",
+  "app_name": "SocialQ",
+  "brand_name": "SocialQ",
+  "tagline": "Find and nurture leads autonomously, reducing manual prospecting by 80%",
+  "primary_color": "#00A8E8",
+  "accent_color": "#FF6B35",
+  "secondary_color": "#F4F7FB",
+  "font_heading": "Sora",
+  "font_body": "Manrope",
+  "voice_tone": "innovative, efficient, trustworthy, forward-thinking",
+  "logo_concept": "A stylized 'Q' with a radar sweep or magnifying glass, symbolizing automatic lead detection and nurturing.",
+  "brand_values": [
+    "Automation",
+    "Efficiency",
+    "Smart Growth"
+  ],
+  "sections": [
+    "Hero",
+    "Features",
+    "How It Works",
+    "Pricing",
+    "Testimonials",
+    "CTA"
+  ],
+  "backend_resources": [
+    "/api/leads",
+    "/api/campaigns",
+    "/api/nurture",
+    "/api/metrics",
+    "/api/users"
+  ],
+  "features": [
+    "Autonomous Lead Finding",
+    "Automated Lead Nurturing",
+    "Smart Prioritization",
+    "Real-time Analytics"
+  ],
+  "pricing_tiers": [
+    "Starter: $99/month — Basic lead finding, up to 500 leads/month, email support",
+    "Growth: $249/month — Advanced lead finding & nurturing, up to 2,000 leads/month, priority support",
+    "Scale: $499/month — Unlimited leads, full automation suite, dedicated account manager"
+  ],
+  "target_customer": "B2B sales teams and SMBs looking to automate their outbound lead generation",
+  "key_metric": "Reduction in manual prospecting time by 80%",
+  "hero_stats": [
+    {
+      "value": "80%",
+      "label": "Reduction in manual prospecting time"
+    },
+    {
+      "value": "2x",
+      "label": "Increase in lead conversion rates"
+    },
+    {
+      "value": "10k",
+      "label": "Leads found autonomously per month"
+    }
+  ],
+  "api_contract": [
+    {
+      "method": "GET",
+      "path": "/api/leads",
+      "response": "[{id,name,company,status,score}]",
+      "description": "Retrieve list of leads"
+    },
+    {
+      "method": "POST",
+      "path": "/api/leads",
+      "response": "{id,name,company,status,score}",
+      "description": "Create a new lead"
+    },
+    {
+      "method": "GET",
+      "path": "/api/campaigns",
+      "response": "[{id,name,status,leads_count}]",
+      "description": "Get all nurture campaigns"
+    },
+    {
+      "method": "POST",
+      "path": "/api/campaigns",
+      "response": "{id,name,status,leads_count}",
+      "description": "Create a new campaign"
+    },
+    {
+      "method": "POST",
+      "path": "/api/nurture",
+      "response": "{lead_id,next_action,last_touch}",
+      "description": "Trigger autonomous nurturing action"
+    },
+    {
+      "method": "GET",
+      "path": "/api/metrics",
+      "response": "{leads_found,conversion_rate,time_saved}",
+      "description": "Get key performance metrics"
+    },
+    {
+      "method": "GET",
+      "path": "/api/users",
+      "response": "[{id,name,email,role}]",
+      "description": "Fetch all users"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/users/{id}",
+      "response": "{id,name,email,role}",
+      "description": "Update user details"
+    }
+  ],
+  "roadmap": [
+    {
+      "id": "m1",
+      "title": "Core dashboard with lead feed and metrics endpoint",
+      "status": "pending"
+    },
+    {
+      "id": "m2",
+      "title": "Autonomous lead finding engine and campaign creation",
+      "status": "pending"
+    },
+    {
+      "id": "m3",
+      "title": "Nurturing automation with action triggers and tracking",
+      "status": "pending"
+    },
+    {
+      "id": "m4",
+      "title": "User management and role-based access",
+      "status": "pending"
+    },
+    {
+      "id": "m5",
+      "title": "Advanced analytics with custom reports and AI insights",
+      "status": "pending"
+    }
+  ]
+}
