@@ -995,23 +995,43 @@ function AuthGate({ onAuth, onClose }) {
   );
 }
 
+// Auth constants — path config for the auth API endpoints.
+const AUTH_CONFIG = {
+  // Storage key for the auth session token.
+  STORAGE_KEY: 'nc_auth',
+  // Additional storage key for legacy user data (cleaned up on init).
+  LEGACY_USER_KEY: 'nc_user',
+  // Base path prefixes and endpoint name.
+  endpoints: {
+    signup: 'auth/signup',
+    login: 'auth/login',
+    me: 'auth/me',
+  },
+};
+
+// Build the auth endpoint URL for a given company slug and endpoint path.
+function getAuthUrl(endpointPath) {
+  const base = window.__NC_BASE__ || '';
+  const slug = window.__COMPANY_SLUG__ || '';
+  return `${base}/api/c/${slug}/${endpointPath}`;
+}
+
 function App() {
   const [auth, setAuth] = useState(() => {
     try {
-      if (localStorage.getItem('nc_user') && !localStorage.getItem('nc_auth')) localStorage.removeItem('nc_user');
-      const a = JSON.parse(localStorage.getItem('nc_auth') || 'null');
+      if (localStorage.getItem(AUTH_CONFIG.LEGACY_USER_KEY) && !localStorage.getItem(AUTH_CONFIG.STORAGE_KEY)) localStorage.removeItem(AUTH_CONFIG.LEGACY_USER_KEY);
+      const a = JSON.parse(localStorage.getItem(AUTH_CONFIG.STORAGE_KEY) || 'null');
       return (a && a.token && a.user && typeof a.user.email === 'string') ? a : null;
     } catch { return null; }
   });
   const [showAuth, setShowAuth] = useState(false);
   useEffect(() => {
     if (!auth?.token) return;
-    const _b = window.__NC_BASE__ || ''; const _s = window.__COMPANY_SLUG__ || '';
-    fetch(`${_b}/api/c/${_s}/auth/me`, { headers: { Authorization: `Bearer ${auth.token}` } })
-      .then(r => r.json()).then(d => { if (!d.ok) { localStorage.removeItem('nc_auth'); setAuth(null); } }).catch(() => {});
+    fetch(getAuthUrl(AUTH_CONFIG.endpoints.me), { headers: { Authorization: `Bearer ${auth.token}` } })
+      .then(r => r.json()).then(d => { if (!d.ok) { localStorage.removeItem(AUTH_CONFIG.STORAGE_KEY); setAuth(null); } }).catch(() => {});
   }, []);
-  const onAuth = (data) => { localStorage.setItem('nc_auth', JSON.stringify(data)); setAuth(data); setShowAuth(false); };
-  const onLogout = () => { localStorage.removeItem('nc_auth'); setAuth(null); };
+  const onAuth = (data) => { localStorage.setItem(AUTH_CONFIG.STORAGE_KEY, JSON.stringify(data)); setAuth(data); setShowAuth(false); };
+  const onLogout = () => { localStorage.removeItem(AUTH_CONFIG.STORAGE_KEY); setAuth(null); };
   if (auth?.user) return <ProductApp user={auth.user} token={auth.token} onLogout={onLogout} />;
   return (
     <>
