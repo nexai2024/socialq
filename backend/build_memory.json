@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "app_type": "",
+  "app_name": "",
+  "api_contract": [],
+  "frontend_endpoints": [],
+  "backend_endpoints": [],
+  "components": [],
+  "known_issues": [],
+  "roadmap": [],
+  "next_action": "",
+  "focus_cycle": 3,
+  "history": [],
+  "updated_at": "2026-08-24T23:36:26.771879+00:00",
+  "stage": "launch",
+  "goal": "First 100 visits (now: 0/100 in 30d)",
+  "goal_why": "the product is live but nobody is seeing it — distribution is the bottleneck",
+  "blog_posts": [
+    {
+      "slug": "how-to-find-your-first-10-b2b-leads-on-linkedin-without-manual-searchi",
+      "title": "How to Find Your First 10 B2B Leads on LinkedIn Without Manual Searching",
+      "meta_description": "Discover a step-by-step method to find your first 10 B2B leads on LinkedIn using Boolean search and automation tools—no manual scrolling required.",
+      "date": "2026-08-24T23:36:26.771759"
+    }
+  ]
+}
